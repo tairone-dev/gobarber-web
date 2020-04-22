@@ -19,6 +19,7 @@ export function* signIn({ payload }) {
 
     if (!user.provider) {
       toast.error('Usuário não é um prestador');
+      yield put(signFailure());
       return;
     }
 
@@ -29,7 +30,7 @@ export function* signIn({ payload }) {
     history.push('/dashboard');
   } catch (error) {
     toast.error('Falha na autenticação, verifique seus dados');
-    yield put(signFailure(error));
+    yield put(signFailure());
   }
 }
 
